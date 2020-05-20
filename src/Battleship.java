@@ -1,56 +1,32 @@
 public class Battleship {
     Ship[][] battleGround = new Ship[10][10];
-    private boolean buildedCarrier = false;
-    private boolean buildedBattleShip = false;
-    private boolean buildedCruiser = false;
-    private boolean buildedSubMarine = false;
-    private boolean buildedDestroyer = false;
     private int point;
 
     public Ship buildCarrier(){
-        if(!buildedCarrier) {
-            Ship carrier = new Ship(Ship.ClassOfShip.Carrier, 5);
-            this.buildedCarrier = true;
-            return carrier;
-        }
-        else return null;
+        Ship carrier = new Ship(Ship.ClassOfShip.Carrier, 5);
+        return carrier;
     }
 
     public Ship buildBattleShip(){
-        if(!buildedBattleShip) {
-            Ship battleShip = new Ship(Ship.ClassOfShip.Battleship, 4);
-            this.buildedBattleShip = true;
-            return battleShip;
-        }
-        else return null;
+        Ship battleShip = new Ship(Ship.ClassOfShip.Battleship, 4);
+        return battleShip;
     }
 
     public Ship buildCruiser(){
-        if(!buildedCruiser) {
-            Ship cruiser = new Ship(Ship.ClassOfShip.Cruiser, 3);
-            buildedCruiser = true;
-            return cruiser;
-        }
-        return null;
+        Ship cruiser = new Ship(Ship.ClassOfShip.Cruiser, 3);
+        return cruiser;
     }
 
     public Ship buildSubMarine(){
-        if(!buildedSubMarine) {
-            Ship submarine = new Ship(Ship.ClassOfShip.Submarine, 3);
-            buildedSubMarine = true;
-            return submarine;
-        }
-        return null;
+        Ship submarine = new Ship(Ship.ClassOfShip.Submarine, 3);
+        return submarine;
     }
 
     public Ship buildDestroyer(){
-        if(!buildedDestroyer) {
-            Ship destroyer = new Ship(Ship.ClassOfShip.Destroyer, 2);
-            buildedDestroyer = true;
-            return destroyer;
-        }
-        return null;
+        Ship destroyer = new Ship(Ship.ClassOfShip.Destroyer, 2);
+        return destroyer;
     }
+
 
     public void addShipRight(Ship[][] board, int row, int column, Ship ship){
         for (int i = 0; i < board.length; i++) {

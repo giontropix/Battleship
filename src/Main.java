@@ -3,15 +3,22 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Benvenuto nel gioco della Battaglia navale!");
-        int numberOfShips = 0;
+        int numberOfShips = 1;
         int numberOfPlayers = 0;
         Battleship battleship = new Battleship();
         Battleship enemyBattleShip = new Battleship();
         System.out.println(battleship.toString());
+        /*battleship.addShipRight(battleship.battleGround, 0,0, battleship.buildCruiser());
+        System.out.println(battleship.toString());
+        battleship.addShipBottom(battleship.battleGround, 1, 0, battleship.buildSubMarine());
+        System.out.println(battleship.toString());
+        battleship.addShipUp(battleship.battleGround, 5, 5, battleship.buildCarrier());
+        System.out.println(battleship.toString());*/
         do{
             do {
                 Scanner scan = new Scanner(System.in);
-                System.out.println("Giocatore 1");
+                if(numberOfPlayers < 2)
+                    System.out.println("Giocatore 1");
                 System.out.println("Inserisci le navi da battaglia");
                 System.out.println("Inserisci la riga: ");
                 int row = scan.nextInt();
@@ -29,11 +36,11 @@ public class Main {
                 int direction = scan.nextInt();
                 Multiplayer multi = new Multiplayer();
                 if(numberOfPlayers < 2) {
-                    multi.multiplayer(battleship, row, column, direction, typeOfShip);
+                    multi.chooseTypeOfShip(battleship, row, column, direction, typeOfShip);
                     System.out.println(battleship.toString());
                 }
                 else{
-                    multi.multiplayer(enemyBattleShip, row, column, direction, typeOfShip);
+                    multi.chooseTypeOfShip(enemyBattleShip, row, column, direction, typeOfShip);
                     System.out.println(enemyBattleShip.toString());
                 }
 

@@ -1,57 +1,34 @@
 public class Multiplayer {
-    public void multiplayer(Battleship battleship, int row, int column, int direction, int typeOfShip){
+    private boolean buildedCarrier = false;
+    private boolean buildedBattleShip = false;
+    private boolean buildedCruiser = false;
+    private boolean buildedSubMarine = false;
+    private boolean buildedDestroyer = false;
+
+    public void chooseTypeOfShip(Battleship battleship, int row, int column, int direction, int typeOfShip) {
         switch (typeOfShip) {
             case 1:
-                switch(direction){
-                    case 1: battleship.addShipBottom(battleship.battleGround, row, column, battleship.buildCarrier());
-                        break;
-                    case 2: battleship.addShipUp(battleship.battleGround, row, column, battleship.buildCarrier());
-                        break;
-                    case 3: battleship.addShipLeft(battleship.battleGround, row, column, battleship.buildCarrier());
-                        break;
-                    case 4: battleship.addShipRight(battleship.battleGround, row, column, battleship.buildCarrier());
-                        break;
-                }
-            case 2: switch(direction){
-                case 1: battleship.addShipBottom(battleship.battleGround, row, column, battleship.buildBattleShip());
-                    break;
-                case 2: battleship.addShipUp(battleship.battleGround, row, column, battleship.buildBattleShip());
-                    break;
-                case 3: battleship.addShipLeft(battleship.battleGround, row, column, battleship.buildBattleShip());
-                    break;
-                case 4: battleship.addShipRight(battleship.battleGround, row, column, battleship.buildBattleShip());
-                    break;
-            }
-            case 3: switch(direction){
-                case 1: battleship.addShipBottom(battleship.battleGround, row, column, battleship.buildCruiser());
-                    break;
-                case 2: battleship.addShipUp(battleship.battleGround, row, column, battleship.buildCruiser());
-                    break;
-                case 3: battleship.addShipLeft(battleship.battleGround, row, column, battleship.buildCruiser());
-                    break;
-                case 4: battleship.addShipRight(battleship.battleGround, row, column, battleship.buildCruiser());
-                    break;
-            }
-            case 4: switch(direction){
-                case 1: battleship.addShipBottom(battleship.battleGround, row, column, battleship.buildSubMarine());
-                    break;
-                case 2: battleship.addShipUp(battleship.battleGround, row, column, battleship.buildSubMarine());
-                    break;
-                case 3: battleship.addShipLeft(battleship.battleGround, row, column, battleship.buildSubMarine());
-                    break;
-                case 4: battleship.addShipRight(battleship.battleGround, row, column, battleship.buildSubMarine());
-                    break;
-            }
-            case 5: switch(direction){
-                case 1: battleship.addShipBottom(battleship.battleGround, row, column, battleship.buildDestroyer());
-                    break;
-                case 2: battleship.addShipUp(battleship.battleGround, row, column, battleship.buildDestroyer());
-                    break;
-                case 3: battleship.addShipLeft(battleship.battleGround, row, column, battleship.buildDestroyer());
-                    break;
-                case 4: battleship.addShipRight(battleship.battleGround, row, column, battleship.buildDestroyer());
-                    break;
-            }
+                chooseDirection(battleship, row, column, direction, battleship.buildCarrier());
+            case 2:
+                chooseDirection(battleship, row, column, direction, battleship.buildBattleShip());
+            case 3:
+                chooseDirection(battleship, row, column, direction, battleship.buildCruiser());
+            case 4:
+                chooseDirection(battleship, row, column, direction, battleship.buildSubMarine());
+            case 5:
+                chooseDirection(battleship, row, column, direction, battleship.buildDestroyer());
+        }
+    }
+    public void chooseDirection(Battleship battleship, int row, int column, int direction, Ship typeOfShip) {
+        switch(direction) {
+            case 1: battleship.addShipBottom(battleship.battleGround, row, column, typeOfShip);
+                break;
+            case 2: battleship.addShipUp(battleship.battleGround, row, column, typeOfShip);
+                break;
+            case 3: battleship.addShipLeft(battleship.battleGround, row, column, typeOfShip);
+                break;
+            case 4: battleship.addShipRight(battleship.battleGround, row, column, typeOfShip);
+                break;
         }
     }
 }
