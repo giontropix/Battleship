@@ -8,7 +8,7 @@ public class Battleship {
     private int point;
 
     public Ship buildCarrier(){
-        if(buildedCarrier == false) {
+        if(!buildedCarrier) {
             Ship carrier = new Ship(Ship.ClassOfShip.Carrier, 5);
             this.buildedCarrier = true;
             return carrier;
@@ -17,7 +17,7 @@ public class Battleship {
     }
 
     public Ship buildBattleShip(){
-        if(buildedBattleShip == false) {
+        if(!buildedBattleShip) {
             Ship battleShip = new Ship(Ship.ClassOfShip.Battleship, 4);
             this.buildedBattleShip = true;
             return battleShip;
@@ -26,7 +26,7 @@ public class Battleship {
     }
 
     public Ship buildCruiser(){
-        if(buildedCruiser == false) {
+        if(!buildedCruiser) {
             Ship cruiser = new Ship(Ship.ClassOfShip.Cruiser, 3);
             buildedCruiser = true;
             return cruiser;
@@ -35,7 +35,7 @@ public class Battleship {
     }
 
     public Ship buildSubMarine(){
-        if(buildedSubMarine == false) {
+        if(!buildedSubMarine) {
             Ship submarine = new Ship(Ship.ClassOfShip.Submarine, 3);
             buildedSubMarine = true;
             return submarine;
@@ -44,7 +44,7 @@ public class Battleship {
     }
 
     public Ship buildDestroyer(){
-        if(buildedDestroyer == false) {
+        if(!buildedDestroyer) {
             Ship destroyer = new Ship(Ship.ClassOfShip.Destroyer, 2);
             buildedDestroyer = true;
             return destroyer;
@@ -120,6 +120,14 @@ public class Battleship {
             }
         } return false;
     }
+
+    public boolean isWin(){
+        if(point != 17)
+            return false;
+        return true;
+    }
+
+    //TO DO ----> CHECK COORDINATES AND MULTIPLAYER
 
     public String toString() {
         String result = "";
