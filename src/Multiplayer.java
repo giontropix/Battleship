@@ -9,14 +9,19 @@ public class Multiplayer {
         switch (typeOfShip) {
             case 1:
                 chooseDirection(battleship, row, column, direction, battleship.buildCarrier());
+                break;
             case 2:
                 chooseDirection(battleship, row, column, direction, battleship.buildBattleShip());
+                break;
             case 3:
                 chooseDirection(battleship, row, column, direction, battleship.buildCruiser());
+                break;
             case 4:
                 chooseDirection(battleship, row, column, direction, battleship.buildSubMarine());
+                break;
             case 5:
                 chooseDirection(battleship, row, column, direction, battleship.buildDestroyer());
+                break;
         }
     }
     public void chooseDirection(Battleship battleship, int row, int column, int direction, Ship typeOfShip) {
