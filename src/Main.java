@@ -1,10 +1,12 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Benvenuto nel gioco della Battaglia navale!");
-        int numberOfShips = 1;
+        int numberOfShips = 0;
         int numberOfPlayers = 0;
+        int totalShip = 2;
         Battleship battleship = new Battleship();
         Battleship enemyBattleShip = new Battleship();
         System.out.println(battleship.toString());
@@ -14,10 +16,10 @@ public class Main {
         System.out.println(battleship.toString());
         battleship.addShipUp(battleship.battleGround, 5, 5, battleship.buildCarrier());
         System.out.println(battleship.toString());*/
-        do{
+        do {
             do {
                 Scanner scan = new Scanner(System.in);
-                if(numberOfPlayers < 2)
+                if(numberOfPlayers == 0)
                     System.out.println("Giocatore 1");
                 System.out.println("Inserisci le navi da battaglia");
                 System.out.println("Inserisci la riga: ");
@@ -32,35 +34,58 @@ public class Main {
                 System.out.println("premi 5 per Destroyer (lunghezza 2)");
                 int typeOfShip = scan.nextInt();
                 System.out.println("Inserisci la direzione: ");
-                System.out.println("Inserisci 1 per basso\nInserisci 2 per alto\nInserisci 3 per sinistra\nInserisci 4 per destra");
+                System.out.println("Inserisci 2 per basso\nInserisci 8 per alto\nInserisci 4 per sinistra\nInserisci 6 per destra");
                 int direction = scan.nextInt();
                 Multiplayer multi = new Multiplayer();
-                if(numberOfPlayers < 2) {
+                if (numberOfPlayers == 0) {
                     multi.chooseTypeOfShip(battleship, row, column, direction, typeOfShip);
+                    numberOfShips++;
                     System.out.println(battleship.toString());
+                    System.out.println("Mancano " + (totalShip - numberOfShips) + " navi da disporre");
+                    if(!battleship.isIntoBoard())
+                        System.out.println("ATTENZIONE, COORDINATE ERRATE!");
                 }
-                else{
+                else {
                     multi.chooseTypeOfShip(enemyBattleShip, row, column, direction, typeOfShip);
+                    numberOfShips++;
                     System.out.println(enemyBattleShip.toString());
+                    System.out.println("Mancano " + (totalShip - numberOfShips) + " navi da disporre");
+                    if(!battleship.isIntoBoard())
+                        System.out.println("ATTENZIONE, COORDINATE ERRATE!");
                 }
-
-                numberOfShips++;
-            } while (numberOfShips < 5);
+            } while (numberOfShips < totalShip);
             numberOfPlayers++;
             numberOfShips = 0;
             System.out.println("Giocatore 2");
-        }while(numberOfPlayers < 2);
-        do{
+            System.out.println(enemyBattleShip.toString());
+        } while(numberOfPlayers < 2);
+
+        do {
+            System.out.println("INIZIA IL GIOCATORE 1");
             System.out.println("Seleziona le coordinate da distruggere");
             System.out.println("Seleziona la riga:");
             Scanner scan2 = new Scanner(System.in);
             int row = scan2.nextInt();
             System.out.println("Selezione la colonna: ");
             int column = scan2.nextInt();
-
             if(battleship.setOnFire(battleship.battleGround, row, column))
                 System.out.println("COLPITO!");
             else System.out.println("MANCATO!");
-        }while(battleship.isWin());
+            System.out.println(battleship.toString());
+            System.out.println("Punti Giocatore 1: " + battleship.getPoint() + "\n");
+
+            System.out.println("INIZIA IL GIOCATORE 2");
+            System.out.println("Seleziona le coordinate da distruggere");
+            System.out.println("Seleziona la riga:");
+            int rowEnemy = scan2.nextInt();
+            System.out.println("Selezione la colonna: ");
+            int columnEnemy = scan2.nextInt();
+
+            if(battleship.setOnFire(enemyBattleShip.battleGround, rowEnemy, columnEnemy))
+                System.out.println("COLPITO!");
+            else System.out.println("MANCATO!");
+            System.out.println(enemyBattleShip.toString());
+            System.out.println("Punti Giocatore 2: " + battleship.getPoint() + "\n");
+        } while(battleship.isWin() || enemyBattleShip.isWin());
     }
 }

@@ -26,13 +26,13 @@ public class Multiplayer {
     }
     public void chooseDirection(Battleship battleship, int row, int column, int direction, Ship typeOfShip) {
         switch(direction) {
-            case 1: battleship.addShipBottom(battleship.battleGround, row, column, typeOfShip);
+            case 2: battleship.addShipBottom(battleship.battleGround, row, column, typeOfShip);
                 break;
-            case 2: battleship.addShipUp(battleship.battleGround, row, column, typeOfShip);
+            case 8: battleship.addShipUp(battleship.battleGround, row, column, typeOfShip);
                 break;
-            case 3: battleship.addShipLeft(battleship.battleGround, row, column, typeOfShip);
+            case 4: battleship.addShipLeft(battleship.battleGround, row, column, typeOfShip);
                 break;
-            case 4: battleship.addShipRight(battleship.battleGround, row, column, typeOfShip);
+            case 6: battleship.addShipRight(battleship.battleGround, row, column, typeOfShip);
                 break;
         }
     }

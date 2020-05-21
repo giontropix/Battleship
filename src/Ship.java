@@ -20,4 +20,6 @@ public class Ship {
     public String toString(){
         return this.icon;
     }
+
+
 }
