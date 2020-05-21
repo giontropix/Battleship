@@ -35,13 +35,10 @@ public class Battleship {
             for (int j = 0; j < board[i].length; j++) {
                 if(row == i && column == j && board[i][j] == null) {
                     for (int k = 0; k < ship.getLenght(); k++) {
-                        if (checkCoordinatesHorizontal(board, row, column + ship.getLenght()) && board[row][column + k] != null) {
+                        if (checkCoordinatesHorizontal(board, row, column + ship.getLenght()) && board[row][column + k] != null)
                             isNull = false;
-                            return;
-                        }
                     }
                     if (isNull){
-                        intoBoard = true;
                         for (int k = 0; k < ship.getLenght(); k++) {
                             if (checkCoordinatesHorizontal(board, row, column + ship.getLenght()))
                                 board[row][column + k] = ship;
@@ -57,13 +54,10 @@ public class Battleship {
             for (int j = 0; j < board[i].length; j++) {
                 if(row == i && column == j && board[i][j] == null) {
                     for (int k = 0; k < ship.getLenght(); k++) {
-                        if(checkCoordinatesHorizontal(board, row, column - ship.getLenght()) && board[row][column - k] != null){
+                        if(checkCoordinatesHorizontal(board, row, column - ship.getLenght()) && board[row][column - k] != null)
                             isNull = false;
-                            return;
-                        }
                     }
                     if (isNull){
-                        intoBoard = true;
                         for (int k = 0; k < ship.getLenght(); k++) {
                             if(checkCoordinatesHorizontal(board, row, column - ship.getLenght()))
                                 board[row][column - k] = ship;
@@ -79,13 +73,10 @@ public class Battleship {
             for (int j = 0; j < board[i].length; j++) {
                 if(row == i && column == j && board[i][j] == null) {
                     for (int k = 0; k < ship.getLenght(); k++) {
-                        if (checkCoordinatesVertical(board, row - ship.getLenght()) && board[row - k][column] != null){
+                        if (checkCoordinatesVertical(board, row - ship.getLenght()) && board[row - k][column] != null)
                             isNull = false;
-                            return;
-                        }
                     }
                     if (isNull){
-                        intoBoard = true;
                         for (int k = 0; k < ship.getLenght(); k++) {
                             if (checkCoordinatesVertical(board, row - ship.getLenght()))
                                 board[row - k][column] = ship;
@@ -99,16 +90,12 @@ public class Battleship {
     public void addShipBottom(Ship[][] board, int row, int column, Ship ship){
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                if(row == i && column == j && board[i][j] == null) {
+                if(row == i && column == j && board[row][column] == null) {
                     for (int k = 0; k < ship.getLenght(); k++) {
-                        if(checkCoordinatesVertical(board, row + ship.getLenght()) && board[row + k][column] != null){
+                        if(checkCoordinatesVertical(board, row + ship.getLenght()) && board[row + k][column] != null)
                             isNull = false;
-                            intoBoard = false;
-                            return;
-                        }
                     }
                     if (isNull){
-                        intoBoard = true;
                         for (int k = 0; k < ship.getLenght(); k++) {
                             if(checkCoordinatesVertical(board, row + ship.getLenght()))
                                 board[row + k][column] = ship;
@@ -170,6 +157,10 @@ public class Battleship {
 
     public boolean isIntoBoard() {
         return this.intoBoard;
+    }
+
+    public boolean isNull() {
+        return isNull;
     }
 
     public int getPoint() {

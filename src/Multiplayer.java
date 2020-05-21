@@ -9,18 +9,23 @@ public class Multiplayer {
         switch (typeOfShip) {
             case 1:
                 chooseDirection(battleship, row, column, direction, battleship.buildCarrier());
+                buildedCarrier = true;
                 break;
             case 2:
                 chooseDirection(battleship, row, column, direction, battleship.buildBattleShip());
+                buildedBattleShip = true;
                 break;
             case 3:
                 chooseDirection(battleship, row, column, direction, battleship.buildCruiser());
+                buildedCruiser = true;
                 break;
             case 4:
                 chooseDirection(battleship, row, column, direction, battleship.buildSubMarine());
+                buildedSubMarine = true;
                 break;
             case 5:
                 chooseDirection(battleship, row, column, direction, battleship.buildDestroyer());
+                buildedDestroyer = true;
                 break;
         }
     }
@@ -35,5 +40,25 @@ public class Multiplayer {
             case 6: battleship.addShipRight(battleship.battleGround, row, column, typeOfShip);
                 break;
         }
+    }
+
+    public boolean isBuildedCarrier() {
+        return buildedCarrier;
+    }
+
+    public boolean isBuildedBattleShip() {
+        return buildedBattleShip;
+    }
+
+    public boolean isBuildedCruiser() {
+        return buildedCruiser;
+    }
+
+    public boolean isBuildedSubMarine() {
+        return buildedSubMarine;
+    }
+
+    public boolean isBuildedDestroyer() {
+        return buildedDestroyer;
     }
 }
