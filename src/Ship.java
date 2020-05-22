@@ -21,5 +21,7 @@ public class Ship {
         return this.icon;
     }
 
-
+    public ClassOfShip getShip() {
+        return ship;
+    }
 }

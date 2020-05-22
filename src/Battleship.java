@@ -90,6 +90,7 @@ public class Battleship {
             for (int j = 0; j < board[i].length; j++) {
                 if(row == i && column == j) {
                     if (board[i][j] != null) {
+                        getWhichShipWasHitted(board, row, column);
                         board[i][j] = destroyedShip;
                         destroyedShip.setIcon("\u001B[31m\uD83D\uDD25\u001B[0m");
                         this.point++;
@@ -103,6 +104,10 @@ public class Battleship {
                 }
             }
         } return false;
+    }
+
+    public Ship.ClassOfShip getWhichShipWasHitted(Ship[][] board, int row, int column){
+        return board[row][column].getShip();
     }
 
     public boolean isWin(){

@@ -49,7 +49,7 @@ public class Main {
                 if (numberOfPlayers == 0) {
                     multi.chooseTypeOfShip(battleship, row, column, direction, typeOfShip);
                     System.out.println(battleship.toString());
-                    if(!battleship.isIntoBoard()) {
+                    if(!battleship.isIntoBoard() || !enemyBattleShip.isIntoBoard()) {
                         System.out.println("ATTENZIONE, COORDINATE ERRATE!");
                         System.out.println("Mancano " + (totalShip - numberOfShips) + " navi da disporre");
                         if(multi.getCheck() == 1)
@@ -63,7 +63,7 @@ public class Main {
                         if(multi.getCheck() == 5)
                             multi.setBuildedDestroyer(false);
                     }
-                    else if(!battleship.isNull()) {
+                    else if(!battleship.isNull() || !enemyBattleShip.isNull()) {
                         System.out.println("ATTENZIONE, LE NAVI RISCHIANO DI SOVRAPPORSI");
                         System.out.println("Mancano " + (totalShip - numberOfShips) + " navi da disporre");
                         if(multi.getCheck() == 1)
@@ -100,6 +100,11 @@ public class Main {
                     }
                 }
             } while (numberOfShips < totalShip);
+            multi.setBuildedCarrier(false);
+            multi.setBuildedBattleShip(false);
+            multi.setBuildedCruiser(false);
+            multi.setBuildedSubMarine(false);
+            multi.setBuildedDestroyer(false);
             numberOfPlayers++;
             numberOfShips = 0;
             System.out.println("Giocatore 2");
@@ -116,7 +121,7 @@ public class Main {
             int column = scan2.nextInt();
             if (battleship.setOnFire(battleship.battleGround, row, column)) {
                 System.out.println(battleship.toString());
-                System.out.println("-------> COLPITO!");
+                System.out.println(enemyBattleShip.getWhichShipWasHitted(battleship.battleGround, row, column) + "-------> COLPITO!");
             }
             else {
                 System.out.println(battleship.toString());
@@ -133,7 +138,7 @@ public class Main {
 
             if (battleship.setOnFire(enemyBattleShip.battleGround, rowEnemy, columnEnemy)){
                 System.out.println(enemyBattleShip.toString());
-                System.out.println("-------> COLPITO!");
+                System.out.println(battleship.getWhichShipWasHitted(enemyBattleShip.battleGround, row, column) + "-------> COLPITO!");
             }
             else {
                 System.out.println(enemyBattleShip.toString());
@@ -144,6 +149,6 @@ public class Main {
                 System.out.println("IL GIOCATORE 1 HA VINTO!!!");
             if (enemyBattleShip.isWin())
                 System.out.println("IL GIOCATORE 2 HA VINTO!!!");
-        } while (battleship.isWin() || enemyBattleShip.isWin());
+        } while (!battleship.isWin() || !enemyBattleShip.isWin());
     }
 }
