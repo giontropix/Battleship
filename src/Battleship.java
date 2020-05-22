@@ -96,6 +96,8 @@ public class Battleship {
                         this.point++;
                         return true;
                     }
+                    else if(board[i][j] == destroyedShip)
+                        return false;
                     else {
                         board[i][j] = destroyedShip;
                         destroyedShip.setIcon("\u001B[37m\uD83C\uDF2A️\u001B[0m");

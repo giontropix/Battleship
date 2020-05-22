@@ -49,7 +49,7 @@ public class Main {
                 if (numberOfPlayers == 0) {
                     multi.chooseTypeOfShip(battleship, row, column, direction, typeOfShip);
                     System.out.println(battleship.toString());
-                    if(!battleship.isIntoBoard() || !enemyBattleShip.isIntoBoard()) {
+                    if(!battleship.isIntoBoard()) {
                         System.out.println("ATTENZIONE, COORDINATE ERRATE!");
                         System.out.println("Mancano " + (totalShip - numberOfShips) + " navi da disporre");
                         if(multi.getCheck() == 1)
@@ -63,7 +63,7 @@ public class Main {
                         if(multi.getCheck() == 5)
                             multi.setBuildedDestroyer(false);
                     }
-                    else if(!battleship.isNull() || !enemyBattleShip.isNull()) {
+                    else if(!battleship.isNull()) {
                         System.out.println("ATTENZIONE, LE NAVI RISCHIANO DI SOVRAPPORSI");
                         System.out.println("Mancano " + (totalShip - numberOfShips) + " navi da disporre");
                         if(multi.getCheck() == 1)
@@ -86,7 +86,7 @@ public class Main {
                     multi.chooseTypeOfShip(enemyBattleShip, row, column, direction, typeOfShip);
                     System.out.println(enemyBattleShip.toString());
 
-                    if(!battleship.isIntoBoard()) {
+                    if(!enemyBattleShip.isIntoBoard()) {
                         System.out.println("ATTENZIONE, COORDINATE ERRATE!");
                         System.out.println("Mancano " + (totalShip - numberOfShips) + " navi da disporre");
                     }
@@ -119,13 +119,14 @@ public class Main {
             int row = scan2.nextInt();
             System.out.println("Selezione la colonna: ");
             int column = scan2.nextInt();
-            if (battleship.setOnFire(battleship.battleGround, row, column)) {
-                System.out.println(battleship.toString());
-                System.out.println(enemyBattleShip.getWhichShipWasHitted(battleship.battleGround, row, column) + "-------> COLPITO!");
+            if (battleship.setOnFire(enemyBattleShip.battleGround, row, column)) {
+                System.out.println("\nMAPPA GIOCATORE 2 ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇");
+                System.out.println(enemyBattleShip.toString());
+                System.out.println(enemyBattleShip.getWhichShipWasHitted(battleship.battleGround, row, column) + "-------> GIOCATORE 1 HA COLPITO!");
             }
             else {
                 System.out.println(battleship.toString());
-                System.out.println("-------> MANCATO!");
+                System.out.println("-------> GIOCATORE 1 HA MANCATO!");
             }
             System.out.println("Punti Giocatore 1: " + battleship.getPoint() + "\n");
 
@@ -136,13 +137,14 @@ public class Main {
             System.out.println("Selezione la colonna: ");
             int columnEnemy = scan2.nextInt();
 
-            if (battleship.setOnFire(enemyBattleShip.battleGround, rowEnemy, columnEnemy)){
-                System.out.println(enemyBattleShip.toString());
-                System.out.println(battleship.getWhichShipWasHitted(enemyBattleShip.battleGround, row, column) + "-------> COLPITO!");
+            if (battleship.setOnFire(battleship.battleGround, rowEnemy, columnEnemy)){
+                System.out.println("\nMAPPA GIOCATORE 1 ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️");
+                System.out.println(battleship.toString());
+                System.out.println(battleship.getWhichShipWasHitted(enemyBattleShip.battleGround, row, column) + "-------> GIOCATORE 2 HA COLPITO!");
             }
             else {
                 System.out.println(enemyBattleShip.toString());
-                System.out.println("-------> MANCATO!");
+                System.out.println("-------> GIOCATORE 2 HA MANCATO!");
             }
             System.out.println("Punti Giocatore 2: " + battleship.getPoint() + "\n");
             if (battleship.isWin())
