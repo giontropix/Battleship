@@ -4,31 +4,38 @@ public class Multiplayer {
     private boolean buildedCruiser = false;
     private boolean buildedSubMarine = false;
     private boolean buildedDestroyer = false;
+    private int check = 0;
 
     public void chooseTypeOfShip(Battleship battleship, int row, int column, int direction, int typeOfShip) {
         switch (typeOfShip) {
             case 1:
+                this.buildedCarrier = true;
+                this.check = 1;
                 chooseDirection(battleship, row, column, direction, battleship.buildCarrier());
-                buildedCarrier = true;
                 break;
             case 2:
+                this.buildedBattleShip = true;
+                this.check = 2;
                 chooseDirection(battleship, row, column, direction, battleship.buildBattleShip());
-                buildedBattleShip = true;
                 break;
             case 3:
+                this.buildedCruiser = true;
+                this.check = 3;
                 chooseDirection(battleship, row, column, direction, battleship.buildCruiser());
-                buildedCruiser = true;
                 break;
             case 4:
+                this.buildedSubMarine = true;
+                this.check = 4;
                 chooseDirection(battleship, row, column, direction, battleship.buildSubMarine());
-                buildedSubMarine = true;
                 break;
             case 5:
+                this.buildedDestroyer = true;
+                this.check = 5;
                 chooseDirection(battleship, row, column, direction, battleship.buildDestroyer());
-                buildedDestroyer = true;
                 break;
         }
     }
+
     public void chooseDirection(Battleship battleship, int row, int column, int direction, Ship typeOfShip) {
         switch(direction) {
             case 2: battleship.addShipBottom(battleship.battleGround, row, column, typeOfShip);
@@ -43,22 +50,46 @@ public class Multiplayer {
     }
 
     public boolean isBuildedCarrier() {
-        return buildedCarrier;
+        return this.buildedCarrier;
     }
 
     public boolean isBuildedBattleShip() {
-        return buildedBattleShip;
+        return this.buildedBattleShip;
     }
 
     public boolean isBuildedCruiser() {
-        return buildedCruiser;
+        return this.buildedCruiser;
     }
 
     public boolean isBuildedSubMarine() {
-        return buildedSubMarine;
+        return this.buildedSubMarine;
     }
 
     public boolean isBuildedDestroyer() {
-        return buildedDestroyer;
+        return this.buildedDestroyer;
+    }
+
+    public void setBuildedCarrier(boolean buildedCarrier) {
+        this.buildedCarrier = buildedCarrier;
+    }
+
+    public void setBuildedBattleShip(boolean buildedBattleShip) {
+        this.buildedBattleShip = buildedBattleShip;
+    }
+
+    public void setBuildedCruiser(boolean buildedCruiser) {
+        this.buildedCruiser = buildedCruiser;
+    }
+
+    public void setBuildedSubMarine(boolean buildedSubMarine) {
+        this.buildedSubMarine = buildedSubMarine;
+    }
+
+    public void setBuildedDestroyer(boolean buildedDestroyer) {
+        this.buildedDestroyer = buildedDestroyer;
+    }
+
+    public int getCheck() {
+        return check;
     }
 }

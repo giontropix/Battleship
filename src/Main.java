@@ -8,6 +8,7 @@ public class Main {
         int totalShip = 2;
         Battleship battleship = new Battleship();
         Battleship enemyBattleShip = new Battleship();
+        Multiplayer multi = new Multiplayer();
         System.out.println(battleship.toString());
         do {
             do {
@@ -20,17 +21,27 @@ public class Main {
                 System.out.println("Inserisci la colonna: ");
                 int column = scan.nextInt();
                 System.out.println("Inserisci il tipo di nave");
-                Multiplayer multi = new Multiplayer();
-                if(!multi.isBuildedCarrier())
+
+                if(!multi.isBuildedCarrier()) {
                     System.out.println("premi 1 per Carrier (lunghezza 5)");
-                if(!multi.isBuildedBattleShip())
+
+                }
+                if(!multi.isBuildedBattleShip()) {
                     System.out.println("premi 2 per BattleShip (lunghezza 4)");
-                if(!multi.isBuildedCruiser())
+
+                }
+                if(!multi.isBuildedCruiser()) {
                     System.out.println("premi 3 per Cruiser(lunghezza 3)");
-                if(!multi.isBuildedSubMarine())
+
+                }
+                if(!multi.isBuildedSubMarine()) {
                     System.out.println("premi 4 per SubMarine (lunghezza 3)");
-                if(!multi.isBuildedDestroyer())
+
+                }
+                if(!multi.isBuildedDestroyer()) {
                     System.out.println("premi 5 per Destroyer (lunghezza 2)");
+
+                }
                 int typeOfShip = scan.nextInt();
                 System.out.println("Inserisci la direzione: ");
                 System.out.println("Inserisci 2 per basso\nInserisci 8 per alto\nInserisci 4 per sinistra\nInserisci 6 per destra");
@@ -41,10 +52,30 @@ public class Main {
                     if(!battleship.isIntoBoard()) {
                         System.out.println("ATTENZIONE, COORDINATE ERRATE!");
                         System.out.println("Mancano " + (totalShip - numberOfShips) + " navi da disporre");
+                        if(multi.getCheck() == 1)
+                            multi.setBuildedCarrier(false);
+                        if(multi.getCheck() == 2)
+                            multi.setBuildedBattleShip(false);
+                        if(multi.getCheck() == 3)
+                            multi.setBuildedCruiser(false);
+                        if(multi.getCheck() == 4)
+                            multi.setBuildedSubMarine(false);
+                        if(multi.getCheck() == 5)
+                            multi.setBuildedDestroyer(false);
                     }
-                    if(!battleship.isNull()) {
+                    else if(!battleship.isNull()) {
                         System.out.println("ATTENZIONE, LE NAVI RISCHIANO DI SOVRAPPORSI");
                         System.out.println("Mancano " + (totalShip - numberOfShips) + " navi da disporre");
+                        if(multi.getCheck() == 1)
+                            multi.setBuildedCarrier(false);
+                        if(multi.getCheck() == 2)
+                            multi.setBuildedBattleShip(false);
+                        if(multi.getCheck() == 3)
+                            multi.setBuildedCruiser(false);
+                        if(multi.getCheck() == 4)
+                            multi.setBuildedSubMarine(false);
+                        if(multi.getCheck() == 5)
+                            multi.setBuildedDestroyer(false);
                     }
                     else {
                         numberOfShips++;
@@ -59,7 +90,7 @@ public class Main {
                         System.out.println("ATTENZIONE, COORDINATE ERRATE!");
                         System.out.println("Mancano " + (totalShip - numberOfShips) + " navi da disporre");
                     }
-                    if(!enemyBattleShip.isNull()) {
+                    else if(!enemyBattleShip.isNull()) {
                         System.out.println("ATTENZIONE, LE NAVI RISCHIANO DI SOVRAPPORSI");
                         System.out.println("Mancano " + (totalShip - numberOfShips) + " navi da disporre");
                     }
@@ -83,7 +114,7 @@ public class Main {
             int row = scan2.nextInt();
             System.out.println("Selezione la colonna: ");
             int column = scan2.nextInt();
-            if(battleship.setOnFire(battleship.battleGround, row, column)) {
+            if (battleship.setOnFire(battleship.battleGround, row, column)) {
                 System.out.println(battleship.toString());
                 System.out.println("-------> COLPITO!");
             }
@@ -91,7 +122,6 @@ public class Main {
                 System.out.println(battleship.toString());
                 System.out.println("-------> MANCATO!");
             }
-
             System.out.println("Punti Giocatore 1: " + battleship.getPoint() + "\n");
 
             System.out.println("INIZIA IL GIOCATORE 2");
@@ -101,15 +131,19 @@ public class Main {
             System.out.println("Selezione la colonna: ");
             int columnEnemy = scan2.nextInt();
 
-            if(battleship.setOnFire(enemyBattleShip.battleGround, rowEnemy, columnEnemy)){
+            if (battleship.setOnFire(enemyBattleShip.battleGround, rowEnemy, columnEnemy)){
                 System.out.println(enemyBattleShip.toString());
-                System.out.println("COLPITO!");
+                System.out.println("-------> COLPITO!");
             }
             else {
                 System.out.println(enemyBattleShip.toString());
-                System.out.println("MANCATO!");
+                System.out.println("-------> MANCATO!");
             }
             System.out.println("Punti Giocatore 2: " + battleship.getPoint() + "\n");
-        } while(battleship.isWin() || enemyBattleShip.isWin());
+            if (battleship.isWin())
+                System.out.println("IL GIOCATORE 1 HA VINTO!!!");
+            if (enemyBattleShip.isWin())
+                System.out.println("IL GIOCATORE 2 HA VINTO!!!");
+        } while (battleship.isWin() || enemyBattleShip.isWin());
     }
 }
